@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Terms of Service — CalledIt</title>
+<title>Terms of Service: CalledIt</title>
 <meta name="description" content="The terms that govern your use of CalledIt.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,52 +35,75 @@
   <nav><a class="wordmark" href="/">Called<span>It</span></a></nav>
 
   <h1>Terms of Service</h1>
-  <p class="updated">Last updated: 11 August 2026</p>
+  <p class="updated">Last updated: 20 August 2026</p>
 
   <h2>1. Who you are dealing with</h2>
-  <p>CalledIt (calledit.bet and app.calledit.bet, the "Service") is operated by <strong>Abrudan Ventures S.R.L.</strong>, CUI 53017100, trade registry no. J2025093115002, Strada Liszt Ferenc Nr. 44A, Oradea, Bihor, Romania. Contact: <a href="mailto:smabrudan78@gmail.com">smabrudan78@gmail.com</a>. By using the Service you agree to these terms.</p>
+  <p>CalledIt (calledit.bet, app.calledit.bet, and the Telegram bot <a href="https://t.me/calleditbet_bot" rel="noopener">@calleditbet_bot</a>, together the "Service") is operated by <strong>Abrudan Ventures S.R.L.</strong>, CUI 53017100, trade registry no. J2025093115002, Strada Liszt Ferenc Nr. 44A, Oradea, Bihor, Romania. Contact: <a href="mailto:smabrudan78@gmail.com">smabrudan78@gmail.com</a>. By using the Service you agree to these terms.</p>
 
   <h2>2. What the Service is</h2>
-  <p>CalledIt provides market information and a <strong>non-custodial</strong> wallet funding surface. When you sign in, an embedded blockchain wallet is created for you through our provider Privy. That wallet is <strong>yours</strong>: we never hold, control, or transmit your funds, we hold no balances for you, and nothing on our books represents your money. Deposits you make are delivered by the payment provider directly to your own wallet address.</p>
-
-  <h2>3. Eligibility</h2>
+  <p>CalledIt is a <strong>price-discovery copilot</strong>. You ask about a game in chat; we compare prices across bookmakers, betting exchanges and prediction markets, and tell you where the best one is.</p>
+  <p>There are two ways a bet then happens, and the difference matters:</p>
   <ul>
-    <li>You must be at least <strong>18 years old</strong>, or older where your jurisdiction requires.</li>
-    <li>You may only use the Service where it is legal to do so. You are responsible for compliance with your local laws, including any restrictions on crypto-assets or prediction markets.</li>
-    <li>The Service may be unavailable in some countries, and our payment partner applies its own country restrictions and identity checks.</li>
+    <li><strong>Handoff.</strong> For most venues we give you a link. You open it and place the bet yourself, in your own account, with that venue. We are not involved in the transaction.</li>
+    <li><strong>Connected venue.</strong> If you choose to connect a venue that we support directly (currently <strong>Cloudbet</strong>), you give us an API key issued by <strong>your own account with that venue</strong>. We then place bets on that account when, and only when, you tap the Place button on a specific quote.</li>
+  </ul>
+  <p><strong>We hold no money, ever.</strong> There is no CalledIt wallet, no CalledIt balance, and no deposit you can make to us. Your stake is your own balance at your own venue, and it never passes through us. Nothing on our books represents your money.</p>
+
+  <h2>3. What it costs</h2>
+  <p>The Service is currently <strong>free to use</strong>. We take no payment from you and hold no payment details. We may in future earn commission from venues we refer you to; that never changes the price you are quoted, which is always the best price we can see on the board.</p>
+
+  <h2>4. Eligibility and where placement works</h2>
+  <ul>
+    <li>You must be at least <strong>18 years old</strong>, or older where your jurisdiction requires. You confirm this before anything else.</li>
+    <li>You may only use the Service where it is legal to do so. You are responsible for compliance with your local laws.</li>
+    <li><strong>One-tap placement is not available everywhere.</strong> A connected venue applies its own list of countries it will not serve, and we enforce that list before placing. Where you are on it, the Service still answers questions and gives you prices and links, but will not place. You tell us your country when you start, and can change it at any time.</li>
+    <li>We do not help anyone evade a venue's geographic restrictions, and doing so is a breach of these terms.</li>
   </ul>
 
-  <h2>4. Your wallet, your responsibility</h2>
-  <p>You control your wallet through your login. Keep your account secure: anyone who controls your login controls your wallet. Blockchain transactions are irreversible; we cannot reverse, refund, or recover on-chain transfers. Crypto-asset values fluctuate and can go to zero.</p>
+  <h2>5. Your venue account and your API key</h2>
+  <p>If you connect a venue, the key stays yours and so does the account behind it.</p>
+  <ul>
+    <li>The key is stored <strong>encrypted</strong> (AES-256-GCM) and is used only to read your balance and to place bets you have tapped. In Telegram, the message containing your key is deleted as soon as it is stored.</li>
+    <li>Send <strong>disconnect</strong> at any time and the key is deleted. You can also revoke it in your venue account, which takes effect immediately regardless of us.</li>
+    <li>Keep your Telegram account and your login secure. Anyone who controls them can operate the Service as you.</li>
+    <li>Your relationship with the venue is governed by <strong>its</strong> terms. It holds your funds, settles your bets, and decides your account standing, not us.</li>
+  </ul>
 
-  <h2>5. Payments</h2>
-  <p>Fiat-to-crypto purchases are provided by <strong>MoonPay</strong> under its own <a href="https://www.moonpay.com/legal/terms_of_use" rel="noopener">terms</a>, fees, and identity verification. We are not a party to your transaction with MoonPay and never receive your card details. Network (gas) fees are set by the blockchain, not by us.</p>
+  <h2>6. Placement, approval, and limits</h2>
+  <p>We never place a bet you have not approved. Every placement follows a specific quote and an explicit tap, and quotes expire.</p>
+  <ul>
+    <li><strong>Caps.</strong> A per-bet cap and a daily cap apply, and you can lower them with the <strong>limits</strong> command.</li>
+    <li><strong>Pause.</strong> Send <strong>pause</strong> to stop all placement immediately; <strong>resume</strong> to allow it again.</li>
+    <li><strong>Kill switch.</strong> We can suspend placement across the Service, for example during an incident or a venue outage.</li>
+    <li><strong>Prices move.</strong> A quote is the price at the moment we fetched it. A venue may reprice, partially fill, or reject a bet, and it may settle or void it under its own rules. We pass on what the venue tells us.</li>
+  </ul>
+  <p>If you tell us you placed a bet elsewhere, we record it so we can track your results. That record is bookkeeping on our side and creates no obligation between us.</p>
 
-  <h2>6. Not advice, and know your risks</h2>
-  <p>Nothing in the Service is betting, investment, financial, or legal advice. Odds, prices, and probabilities are information, not recommendations. Prediction markets and betting involve real risk of loss: never commit money you cannot afford to lose. If gambling stops being fun, seek help — for example <a href="https://www.begambleaware.org" rel="noopener">BeGambleAware</a>.</p>
+  <h2>7. Not advice, and know your risks</h2>
+  <p>Nothing in the Service is betting, investment, financial, or legal advice. Odds, prices, and probabilities are information, not recommendations, and automated analysis can be wrong. Betting involves real risk of loss: never commit money you cannot afford to lose. If gambling stops being fun, seek help, for example <a href="https://www.begambleaware.org" rel="noopener">BeGambleAware</a>.</p>
 
-  <h2>7. Acceptable use</h2>
+  <h2>8. Acceptable use</h2>
   <ul>
     <li>No use that is unlawful in your jurisdiction, including evading geographic restrictions with technical means when a service prohibits it.</li>
-    <li>No fraud, money laundering, or use of someone else's identity or payment method.</li>
+    <li>No fraud, money laundering, or use of someone else's identity, account, or API key.</li>
     <li>No attacking, scraping at scale, reverse engineering, or disrupting the Service.</li>
     <li>One account per person; you must be acting for yourself.</li>
   </ul>
   <p>We may suspend or terminate access that violates these terms.</p>
 
-  <h2>8. Third-party services</h2>
-  <p>The Service integrates third parties (Privy, MoonPay, blockchain networks, market venues). We are not responsible for their availability or actions, and their own terms apply to your use of them.</p>
+  <h2>9. Third-party services</h2>
+  <p>The Service integrates third parties: <strong>Telegram</strong> (the chat surface), <strong>Cloudbet</strong> and other market venues, odds and statistics data providers, <strong>Google</strong> (the language model that reads your questions), and <strong>Privy</strong> (sign-in on the web). We are not responsible for their availability or actions, and their own terms apply to your use of them.</p>
 
-  <h2>9. Service "as is"</h2>
-  <p>The Service is provided as is and as available, without warranties of any kind, express or implied. We do not warrant that it will be uninterrupted, error-free, or that market data is accurate or complete.</p>
+  <h2>10. Service "as is"</h2>
+  <p>The Service is provided as is and as available, without warranties of any kind, express or implied. We do not warrant that it will be uninterrupted or error-free, that market data is accurate, complete or current, or that any venue will accept, price, or settle a bet in any particular way.</p>
 
-  <h2>10. Liability</h2>
-  <p>To the maximum extent permitted by law, Abrudan Ventures S.R.L. is not liable for indirect, incidental, special, or consequential damages, loss of profits, or loss of crypto-assets arising from your use of the Service. Nothing here excludes liability that cannot be excluded by law, including for intent or gross negligence.</p>
+  <h2>11. Liability</h2>
+  <p>To the maximum extent permitted by law, Abrudan Ventures S.R.L. is not liable for indirect, incidental, special, or consequential damages, for loss of profits, or for betting losses arising from your use of the Service. Nothing here excludes liability that cannot be excluded by law, including for intent or gross negligence.</p>
 
-  <h2>11. Changes</h2>
+  <h2>12. Changes</h2>
   <p>We may update these terms; the date above reflects the latest version. Continued use after changes means acceptance. Material changes will be flagged in the product.</p>
 
-  <h2>12. Governing law</h2>
+  <h2>13. Governing law</h2>
   <p>These terms are governed by Romanian law. Disputes go to the competent courts of Oradea, Romania, unless mandatory consumer law gives you the courts of your residence. EU consumers can also use the <a href="https://ec.europa.eu/consumers/odr" rel="noopener">EU ODR platform</a>.</p>
 
   <div class="foot">

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy Policy — CalledIt</title>
+<title>Privacy Policy: CalledIt</title>
 <meta name="description" content="How CalledIt handles your data.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,49 +35,57 @@
   <nav><a class="wordmark" href="/">Called<span>It</span></a></nav>
 
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: 11 August 2026</p>
+  <p class="updated">Last updated: 20 August 2026</p>
 
   <h2>Who we are</h2>
-  <p>CalledIt (calledit.bet and app.calledit.bet) is operated by <strong>Abrudan Ventures S.R.L.</strong>, a Romanian limited liability company, CUI 53017100, trade registry no. J2025093115002, registered office at Strada Liszt Ferenc Nr. 44A, Oradea, Bihor, Romania ("we", "us"). We are the data controller for the processing described here. Contact: <a href="mailto:smabrudan78@gmail.com">smabrudan78@gmail.com</a>.</p>
+  <p>CalledIt (calledit.bet, app.calledit.bet, and the Telegram bot <a href="https://t.me/calleditbet_bot" rel="noopener">@calleditbet_bot</a>) is operated by <strong>Abrudan Ventures S.R.L.</strong>, a Romanian limited liability company, CUI 53017100, trade registry no. J2025093115002, registered office at Strada Liszt Ferenc Nr. 44A, Oradea, Bihor, Romania ("we", "us"). We are the data controller for the processing described here. Contact: <a href="mailto:smabrudan78@gmail.com">smabrudan78@gmail.com</a>.</p>
 
   <h2>What CalledIt is, in one line</h2>
-  <p>CalledIt is a non-custodial product: when you sign up you get your <strong>own</strong> wallet, funds you deposit are delivered directly to that wallet, and we never hold your money. That shapes what data we do and do not touch.</p>
+  <p>CalledIt compares betting prices and, if you connect your own account at a venue, places bets on that account when you tap Place. <strong>We never hold your money</strong> and we take no payments, so we hold no card, bank, or identity-document data at all. That shapes everything below.</p>
 
   <h2>Data we collect</h2>
   <ul>
-    <li><strong>Account identifiers.</strong> When you sign in through our authentication provider Privy, we receive the identifier you used (email address, phone number, or Apple/Google account identifier) and your user id.</li>
-    <li><strong>Wallet address.</strong> The public blockchain address of the embedded wallet created for you. Blockchain addresses and their transactions are public by the nature of public blockchains.</li>
-    <li><strong>Deposit metadata.</strong> When you fund your wallet through MoonPay, we receive transaction status events (identifiers, amounts, currency, status). We <strong>never</strong> receive or store your card number, bank details, or identity documents.</li>
-    <li><strong>Technical data.</strong> Your IP address (used for security, including binding payment sessions to your device as required by our payment partner), browser and device basics, and server logs.</li>
+    <li><strong>Your chat identity.</strong> On Telegram, your Telegram user id and, if you have one, your username. On the web, the identifier you sign in with through our authentication provider <strong>Privy</strong> (Telegram or email) and your Privy user id.</li>
+    <li><strong>Your settings.</strong> The country you tell us, the fact and time that you confirmed you are 18 or over, your per-bet and daily caps, your staking currency, and whether you have paused placement.</li>
+    <li><strong>A venue API key, if you connect one.</strong> Stored <strong>encrypted</strong> with AES-256-GCM, together with the venue name and whether the last call using it succeeded. On Telegram we delete the message containing the key once it is stored.</li>
+    <li><strong>Your bets.</strong> Bets we place for you and bets you tell us you placed elsewhere: the selection, stake, price, currency, venue, timestamps, and the result once settled.</li>
+    <li><strong>Your messages.</strong> What you write to the bot, so it can answer. See the next section.</li>
+    <li><strong>Technical data.</strong> Server logs and basic device or browser information, kept for security and debugging.</li>
   </ul>
 
+  <h2>Your messages and the language model</h2>
+  <p>To understand a question like "arsenal v coventry tonight, best price on arsenal?", the bot sends your message, and recent turns of the conversation for context, to a language model operated by <strong>Google</strong> (Gemini). Google processes it to generate the reply. Please do not send the bot anything sensitive that you would not want processed this way. The bot is built to answer questions about markets and prices, and nothing more.</p>
+
   <h2>What we deliberately do not collect</h2>
-  <p>Payment card data and know-your-customer identity documents are collected and processed by <strong>MoonPay</strong> directly under its own <a href="https://www.moonpay.com/legal/privacy_policy" rel="noopener">privacy policy</a>, acting as an independent controller. We never see them.</p>
+  <p>We take no payments, so there is no card number, bank detail, or billing address anywhere in our systems. We run no identity verification, so we hold no passport, ID, or proof of address. We create no wallet for you and hold no balance. Any identity checks and any funding of your account happen at your <strong>venue</strong>, under its own policies, with no involvement from us.</p>
 
   <h2>Why we process your data</h2>
   <ul>
-    <li><strong>To provide the service</strong> (create your wallet, show your balance, generate deposit sessions) — performance of a contract, Art. 6(1)(b) GDPR.</li>
-    <li><strong>Security and abuse prevention</strong> (IP binding of payment sessions, rate limiting, logs) — legitimate interest, Art. 6(1)(f).</li>
-    <li><strong>Legal obligations</strong> (accounting, responding to lawful requests) — Art. 6(1)(c).</li>
+    <li><strong>To provide the service</strong> (answer your questions, quote prices, place a bet you tapped, show your bets and results): performance of a contract, Art. 6(1)(b) GDPR.</li>
+    <li><strong>To keep placement lawful and safe</strong> (the 18+ confirmation, the country check a venue requires, caps and pause): legal obligation and legitimate interest, Art. 6(1)(c) and 6(1)(f).</li>
+    <li><strong>Security and abuse prevention</strong> (rate limiting, logs): legitimate interest, Art. 6(1)(f).</li>
+    <li><strong>Legal obligations</strong> (accounting, responding to lawful requests): Art. 6(1)(c).</li>
   </ul>
   <p>We do not sell personal data and we do not use it for third-party advertising.</p>
 
   <h2>Who receives data</h2>
   <ul>
-    <li><strong>Privy</strong> (authentication and embedded wallets)</li>
-    <li><strong>MoonPay</strong> (fiat-to-crypto payments, independent controller)</li>
-    <li><strong>Vercel</strong> (application hosting) and <strong>GitHub Pages</strong> (website hosting)</li>
+    <li><strong>Telegram</strong>, the messaging platform the bot runs on, as an independent controller under its own policy.</li>
+    <li><strong>Google</strong>, for the language model that reads your messages.</li>
+    <li><strong>Cloudbet</strong> and any other venue you connect or we link you to, which receives the bet itself under its own terms and privacy policy.</li>
+    <li><strong>Privy</strong>, authentication on the web.</li>
+    <li><strong>Fly.io</strong> (application hosting, European region), <strong>Vercel</strong> (web hosting) and <strong>GitHub Pages</strong> (this website).</li>
   </ul>
-  <p>Some providers process data in the United States; transfers rely on the European Commission's Standard Contractual Clauses or an adequacy decision. Anything written to a public blockchain (your wallet address, balances, transactions) is public worldwide by design and cannot be deleted by anyone.</p>
+  <p>Some providers process data outside the EEA, including in the United States; transfers rely on the European Commission's Standard Contractual Clauses or an adequacy decision.</p>
 
-  <h2>Retention</h2>
-  <p>Account and transaction metadata are kept while your account exists and afterwards only as long as required for legal and accounting purposes. Server logs are kept briefly for security. On-chain data is permanent by nature.</p>
+  <h2>Retention and deletion</h2>
+  <p>Send <strong>disconnect</strong> and your stored venue API key is deleted. Ask us at the address above to delete your account and we remove your settings, your key, and your bet records, keeping only what accounting or other law requires. You can revoke an API key directly in your venue account at any time, which takes effect immediately whether or not you tell us. Server logs are kept briefly for security.</p>
 
   <h2>Your rights</h2>
   <p>Under the GDPR you can request access, rectification, erasure, restriction, portability, and object to processing based on legitimate interest. Write to <a href="mailto:smabrudan78@gmail.com">smabrudan78@gmail.com</a>. You can also complain to the Romanian supervisory authority, <a href="https://www.dataprotection.ro" rel="noopener">ANSPDCP</a>, or your local EU authority.</p>
 
   <h2>Cookies</h2>
-  <p>The app uses only the storage strictly necessary for signing you in and keeping your session. No advertising or cross-site tracking cookies.</p>
+  <p>The web app uses only the storage strictly necessary for signing you in and keeping your session. No advertising or cross-site tracking cookies.</p>
 
   <h2>Age</h2>
   <p>CalledIt is for adults. You must be at least 18 (or the higher age your jurisdiction requires) to use it; we do not knowingly process children's data.</p>
