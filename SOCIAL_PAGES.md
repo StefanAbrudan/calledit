@@ -7,10 +7,8 @@ after the bot rebrand to @calleditbet_bot.
 
 ## X (x.com) company account
 
-**Handle, in order of preference** (type each at signup until one is free):
-1. `@calleditbet` - matches the domain
-2. `@getcalledit`
-3. `@calleditHQ`
+**Handle: `@getcalledit` (LIVE, registered 2026-08-13).** Profile still needs: bio,
+website, location, avatar + header images, pinned post (all below).
 
 | Field | Value |
 |---|---|
