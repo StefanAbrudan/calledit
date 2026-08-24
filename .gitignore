@@ -3,3 +3,9 @@
 BOT_COPY_PROPOSAL.md
 BOT_COPY_PROPOSAL.patch
 LAUNCH_POSTS_*.md
+
+# Social/launch pack: drafts, handles and internal notes. Not public.
+SOCIAL_PAGES.md
+
+# Local preview config, not part of the published site.
+.claude/

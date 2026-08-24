@@ -1,0 +1,7 @@
+# calledit.bet
+# CalledIt is an AI betting copilot on Telegram. 18+ only.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://calledit.bet/sitemap.xml
