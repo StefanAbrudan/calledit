@@ -1,0 +1,6 @@
+# CalledIt security contact (RFC 9116). Covers calledit.bet, app.calledit.bet and @calleditbet_bot.
+Contact: mailto:contact@calledit.bet?subject=Security%20report
+Expires: 2027-09-12T00:00:00.000Z
+Preferred-Languages: en, ro
+Canonical: https://calledit.bet/.well-known/security.txt
+Policy: https://calledit.bet/terms/#security
