@@ -162,6 +162,23 @@
           <path d="M60 55 L70 65 L86 38" fill="none" stroke="#2f7d32" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
+      <!--
+        NEVER put a Telegram login widget, or anything that renders Privy, on this site.
+
+        A Telegram bot has exactly ONE login domain, set with /setdomain in BotFather, and ours is
+        app.calledit.bet. Telegram checks the origin the widget loads from against that single
+        value and answers "Bot domain invalid" for anything else, as an 18-byte body the page
+        never surfaces. A Telegram login offered from calledit.bet is therefore a button that can
+        only ever do nothing. Verified 2026-08-28:
+
+          curl "https://oauth.telegram.org/auth?bot_id=8834056128&origin=https%3A%2F%2Fcalledit.bet&embed=1"
+            -> Bot domain invalid          (same for privy.calledit.bet and auth.privy.io)
+          ...&origin=https%3A%2F%2Fapp.calledit.bet
+            -> the authorization page
+
+        So sign-in here is a LINK to app.calledit.bet and never a login attempt, and anyone who
+        already talks to the bot skips the web login entirely through ?start=login below.
+      -->
       <div class="nav-actions">
         <a class="nav-link" href="https://app.calledit.bet" rel="noopener">Sign in</a>
         <a class="nav-cta" href="https://t.me/calleditbet_bot" rel="noopener">Open in Telegram</a>
@@ -182,6 +199,8 @@
       </div>
       <p class="fine">Free to use. No account with us, no deposit with us, no money ever held by us.
       Every other bookmaker is a link you place yourself. 18+ only.</p>
+      <p class="fine">Already using the bot? <a href="https://t.me/calleditbet_bot?start=login" rel="noopener">Get a sign-in link</a>
+      and skip the web login.</p>
 
       <h2 class="sr-only">Example conversation with the CalledIt bot</h2>
       <div class="phone">
