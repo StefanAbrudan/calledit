@@ -164,7 +164,7 @@
       "name": "What data do you keep, and how do I delete it?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Your chat identity, the settings you choose, an encrypted venue key if you connect one, your bet records, and your messages so the bot can answer them. To understand a question, the bot sends your message to a language model operated by Google. Ask us to delete your account and we remove your settings, your key and your bet records, keeping only what accounting or other law requires. The full detail, including your GDPR rights and how to complain, is in the Privacy Policy."
+        "text": "Your chat identity, the settings you choose, an encrypted venue key if you connect one, your bet records, and your messages so the bot can answer them. To understand a question, the bot sends your message to a language model via OpenRouter, routed only to providers that do not store or train on it, with Google as a fallback. Ask us to delete your account and we remove your settings, your key and your bet records, keeping only what accounting or other law requires. The full detail, including your GDPR rights and how to complain, is in the Privacy Policy."
       }
     },
     {
@@ -198,7 +198,7 @@
 
   <main id="main">
   <h1>Questions, answered</h1>
-  <p class="updated">Last updated: 25 August 2026</p>
+  <p class="updated">Last updated: 13 September 2026</p>
   <p class="intro">The short version: CalledIt finds you the best price, you place the bet on your
   own account, and we never touch your money. Everything below is the longer version.</p>
 
@@ -305,7 +305,7 @@
     <div class="answer">
       <p>Your chat identity, the settings you choose, an encrypted venue key if you connect one,
       your bet records, and your messages so the bot can answer them. To understand a question,
-      the bot sends your message to a language model operated by Google.</p>
+      the bot sends your message to a language model via OpenRouter (DeepSeek, NVIDIA or Nex AGI), routed only to providers that do not store or train on it, with Google as a fallback.</p>
       <p>Ask us to delete your account and we remove your settings, your key and your bet records,
       keeping only what accounting or other law requires. The full detail, including your GDPR
       rights and how to complain, is in the <a href="/privacy/">Privacy Policy</a>.</p>

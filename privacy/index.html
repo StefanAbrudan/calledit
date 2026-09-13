@@ -67,7 +67,7 @@
 
   <main id="main">
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: 25 August 2026</p>
+  <p class="updated">Last updated: 13 September 2026</p>
 
   <h2>Who we are</h2>
   <p>CalledIt (calledit.bet, app.calledit.bet, and the Telegram bot <a href="https://t.me/calleditbet_bot" rel="noopener">@calleditbet_bot</a>) is operated by <strong>Abrudan Ventures S.R.L.</strong>, a Romanian limited liability company, CUI 53017100, trade registry no. J2025093115002, registered office at Strada Liszt Ferenc Nr. 44A, Oradea, Bihor, Romania ("we", "us"). We are the data controller for the processing described here. Contact: <a href="mailto:contact@calledit.bet">contact@calledit.bet</a>.</p>
@@ -86,7 +86,7 @@
   </ul>
 
   <h2>Your messages and the language model</h2>
-  <p>To understand a question like "arsenal v coventry tonight, best price on arsenal?", the bot sends your message, and recent turns of the conversation for context, to a language model operated by <strong>Google</strong> (Gemini). Google processes it to generate the reply. Please do not send the bot anything sensitive that you would not want processed this way. The bot is built to answer questions about markets and prices, and nothing more.</p>
+  <p>To understand a question like "arsenal v coventry tonight, best price on arsenal?", the bot sends your message, recent turns of the conversation for context, and a short running summary of older turns, to a language model. The request goes through <strong>OpenRouter</strong> (OpenRouter, Inc., United States), which forwards it to one of the model providers we have configured: currently <strong>DeepSeek</strong>, <strong>NVIDIA</strong> and <strong>Nex AGI</strong>, in that order of preference. Every request carries OpenRouter's "no data collection" setting, so it is only ever routed to a provider whose policy is not to store your messages or train on them; a provider that cannot honour that is skipped. If none of them can answer, the message goes to <strong>Google</strong> (Gemini) as a last resort. Google's free-tier terms allow it to use such messages to improve its services, which is why it is last and rarely used. The provider processes your message only to generate the reply; we keep the reply and your message in your conversation history as described above. Please do not send the bot anything sensitive that you would not want processed this way. The bot is built to answer questions about markets and prices, and nothing more. When we change the provider list, we update this section and the date at the top of this page.</p>
 
   <h2>What we deliberately do not collect</h2>
   <p>We take no payments, so there is no card number, bank detail, or billing address anywhere in our systems. We run no identity verification, so we hold no passport, ID, or proof of address. We create no wallet for you and hold no balance. Any identity checks and any funding of your account happen at your <strong>venue</strong>, under its own policies, with no involvement from us.</p>
@@ -104,7 +104,7 @@
   <h2>Who receives data</h2>
   <ul>
     <li><strong>Telegram</strong>, the messaging platform the bot runs on, as an independent controller under its own policy.</li>
-    <li><strong>Google</strong>, for the language model that reads your messages.</li>
+    <li><strong>OpenRouter</strong> and, through it, <strong>DeepSeek</strong>, <strong>NVIDIA</strong> or <strong>Nex AGI</strong>, for the language model that reads your messages, under a no-data-collection routing setting; <strong>Google</strong> (Gemini) as the fallback. See "Your messages and the language model" above.</li>
     <li><strong>Cloudbet</strong> and any other venue you connect or we link you to, which receives the bet itself under its own terms and privacy policy.</li>
     <li><strong>Privy</strong>, authentication on the web.</li>
     <li><strong>Fly.io</strong> (application hosting, European region), <strong>Vercel</strong> (web hosting) and <strong>GitHub Pages</strong> (this website).</li>
