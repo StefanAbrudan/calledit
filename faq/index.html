@@ -31,15 +31,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..600;1,9..144,500..600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--ink:#16130e;--ink-soft:#413a31;--bg-top:#e9f1f7;--bg-bottom:#f7f2e9;--accent:#2f7d32;--accent-link:#2c7530;--pill-dark:#191919}
+  :root{--ink:#16130e;--ink-soft:#413a31;--bg-top:#e9f1f7;--bg-bottom:#f7f2e9;--accent:#2f7d32;--accent-link:#2c6ab5;--blue-600:#1757a0;--pill-dark:#191919}
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--bg-top) 0%,#f3f2ec 55%,var(--bg-bottom) 100%);min-height:100vh;-webkit-font-smoothing:antialiased}
   .skip{position:absolute;left:-9999px;top:0}
   .skip:focus{left:24px;top:24px;z-index:10;background:#fff;color:var(--ink);font-weight:600;padding:11px 20px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.15)}
   .wrap{max-width:760px;margin:0 auto;padding:0 24px 80px}
   nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:28px 0}
-  .wordmark{display:inline-flex;align-items:center;font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.35rem;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
-  .wordmark .tick{flex:none;width:.7em;height:.343em;display:block;margin-left:.085em;margin-bottom:.06em}
+  .wordmark{display:inline-flex;align-items:center;text-decoration:none}
+  .wordmark img{height:26px;width:auto;display:block}
   .nav-cta{font-size:.92rem;font-weight:600;text-decoration:none;color:#fff;background:var(--pill-dark);padding:11px 22px;border-radius:999px;transition:background .15s}
   .nav-cta:hover{background:#000}
   h1{font-family:"Fraunces",Georgia,serif;font-weight:540;font-size:clamp(2rem,4.5vw,2.9rem);letter-spacing:-.02em;margin:34px 0 8px}
@@ -54,7 +54,7 @@
   summary::-webkit-details-marker{display:none}
   summary::after{
     content:"";position:absolute;right:24px;top:50%;width:9px;height:9px;margin-top:-6px;
-    border-right:2.2px solid var(--accent);border-bottom:2.2px solid var(--accent);
+    border-right:2.2px solid var(--accent-link);border-bottom:2.2px solid var(--accent-link);
     transform:rotate(45deg);transition:transform .18s;
   }
   details[open] summary::after{transform:rotate(-135deg);margin-top:-2px}
@@ -67,6 +67,7 @@
   .answer li{margin-bottom:6px}
   strong{color:var(--ink);font-weight:600}
   a{color:var(--accent-link)}
+  a:hover{color:var(--blue-600)}
   code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;background:rgba(47,125,50,.1);color:#245c27;padding:1px 6px;border-radius:5px}
   .still{margin-top:36px;background:rgba(255,255,255,.62);border:1px solid rgba(0,0,0,.08);border-radius:16px;padding:22px}
   .still h2{font-family:"Fraunces",Georgia,serif;font-weight:560;font-size:1.09rem;margin-bottom:8px}
@@ -74,7 +75,7 @@
   .foot{margin-top:46px;padding-top:22px;border-top:1px solid rgba(0,0,0,.08);font-size:.88rem;color:var(--ink-soft)}
   .foot a{margin-right:16px;color:var(--accent-link)}
   .foot .rg{margin-top:10px;line-height:1.55}
-  a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+  a:focus-visible,summary:focus-visible{outline:3px solid var(--accent-link);outline-offset:3px}
   @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 <!-- Analytics: Plausible. Cookieless and no personal data, so it needs no consent
@@ -175,6 +176,31 @@
         "text": "18, or older where your jurisdiction requires it. You confirm this before anything else happens, and CalledIt is not offered to anyone below that age."
       }
     }
+    ,{
+      "@type": "Question",
+      "name": "Which sports and markets do you cover?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Football first. Pre-match, the board carries the Premier League, La Liga, the Bundesliga, Ligue 1 and the Champions League with match winner, totals and spreads, and in the days before kick-off the corner, card and player markets the books add late. In play, any football match gets 50-plus live markets: corners, cards, goal lines, handicaps, next goal. Beyond football the board carries the NBA, and whatever the prediction markets are pricing, from an election to who wins the league. Ask about a fixture; if it is not on the board yet the bot says so rather than guessing." }
+    }
+    ,{
+      "@type": "Question",
+      "name": "What do you do with my data?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Your messages go to a language model so the bot can understand them, through OpenRouter, routed only to providers that do not store or train on them, with Google as a last resort. We keep your chat identity, the settings you choose, an encrypted venue key if you connect one, and your bet records. We do not sell personal data, run advertising, or use tracking cookies; this website measures visits with a cookieless counter. Ask to delete your account and we remove everything except what accounting law requires. The Privacy Policy has the full detail and your rights." }
+    }
+    ,{
+      "@type": "Question",
+      "name": "How do you deal with stale quotes?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Every price on the board carries the moment it was fetched. A price that disagrees with the consensus of the other books is demoted, not quoted, so a book that forgot to update cannot hand you a phantom bargain. A quote the bot gives you is single-use and expires after a few minutes; the exact window is printed on it. Tap after that and you get \"that quote is gone, text bet again for a fresh price\", never a placement at a number you did not see." }
+    }
+    ,{
+      "@type": "Question",
+      "name": "What happens when placing is not instant?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Your tap sends the bet to the venue and the bot waits for the venue\u2019s answer, then tells you exactly what it was, with the venue\u2019s own reference. A venue can accept, fill at a better price, or reject; on a connected bookmaker the bet is sent with price protection, so it fills at the quoted price or better and otherwise comes back rejected. On prediction markets an order is fill-or-kill: filled at the price you tapped or not at all, nothing is left resting. Settlement follows the venue\u2019s own records, usually within minutes of the result, and shows up under bets with your P&L." }
+    }
+    ,{
+      "@type": "Question",
+      "name": "What if the team scores between the quote and my tap?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Then the quoted price is no longer the price, and the bot will not pretend otherwise. Pre-match quotes are a snapshot; once a game is in play, prices move with every goal, card and corner, and in-play prices come from a single live feed, so the bot labels them indicative. If the market has moved by the time you tap, the venue either fills you at a better price or rejects the bet, and you see which. CalledIt never places at a price you were not shown." }
+    }
   ]
 }
 </script>
@@ -184,14 +210,7 @@
 <div class="wrap">
   <header>
   <nav>
-    <a class="wordmark" href="/" aria-label="CalledIt home">
-      <span aria-hidden="true">calledit</span>
-      <svg class="tick" viewBox="14 32.5 77.5 38" aria-hidden="true" focusable="false">
-        <circle cx="22" cy="53" r="8" fill="#2f7d32" opacity=".5"/>
-        <circle cx="44" cy="53" r="8" fill="#2f7d32" opacity=".78"/>
-        <path d="M60 55 L70 65 L86 38" fill="none" stroke="#2f7d32" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
+    <a class="wordmark" href="/" aria-label="CalledIt home"><img src="/brand/calledit-lockup.svg" alt="CalledIt" width="132" height="26"></a>
     <a class="nav-cta" href="https://t.me/calleditbet_bot" rel="noopener">Open in Telegram</a>
   </nav>
   </header>
@@ -269,6 +288,76 @@
     </div>
   </details>
 
+
+  <details>
+
+    <summary>Which sports and markets do you cover?</summary>
+
+    <div class="answer">
+
+      <p>Football first. Pre-match, the board carries the Premier League, La Liga, the Bundesliga, Ligue 1 and the Champions League with match winner, totals and spreads, and in the days before kick-off the corner, card and player markets the books add late. In play, any football match gets 50-plus live markets: corners, cards, goal lines, handicaps, next goal.</p>
+
+      <p>Beyond football the board carries the NBA, and whatever the prediction markets are pricing, from an election to who wins the league. Ask about a fixture; if it is not on the board yet the bot says so rather than guessing.</p>
+
+    </div>
+
+  </details>
+
+  <details>
+
+    <summary>What do you do with my data?</summary>
+
+    <div class="answer">
+
+      <p>Your messages go to a language model so the bot can understand them, through OpenRouter, routed only to providers that do not store or train on them, with Google as a last resort. We keep your chat identity, the settings you choose, an encrypted venue key if you connect one, and your bet records.</p>
+
+      <p>We do not sell personal data, run advertising, or use tracking cookies; this website measures visits with a cookieless counter. Ask to delete your account and we remove everything except what accounting law requires. The Privacy Policy has the full detail and your rights.</p>
+
+    </div>
+
+  </details>
+
+  <details>
+
+    <summary>How do you deal with stale quotes?</summary>
+
+    <div class="answer">
+
+      <p>Every price on the board carries the moment it was fetched. A price that disagrees with the consensus of the other books is demoted, not quoted, so a book that forgot to update cannot hand you a phantom bargain.</p>
+
+      <p>A quote the bot gives you is single-use and expires after a few minutes; the exact window is printed on it. Tap after that and you get "that quote is gone, text bet again for a fresh price", never a placement at a number you did not see.</p>
+
+    </div>
+
+  </details>
+
+  <details>
+
+    <summary>What happens when placing is not instant?</summary>
+
+    <div class="answer">
+
+      <p>Your tap sends the bet to the venue and the bot waits for the venue&rsquo;s answer, then tells you exactly what it was, with the venue&rsquo;s own reference. A venue can accept, fill at a better price, or reject; on a connected bookmaker the bet is sent with price protection, so it fills at the quoted price or better and otherwise comes back rejected.</p>
+
+      <p>On prediction markets an order is fill-or-kill: filled at the price you tapped or not at all, nothing is left resting. Settlement follows the venue&rsquo;s own records, usually within minutes of the result, and shows up under <strong>bets</strong> with your P&amp;L.</p>
+
+    </div>
+
+  </details>
+
+  <details>
+
+    <summary>What if the team scores between the quote and my tap?</summary>
+
+    <div class="answer">
+
+      <p>Then the quoted price is no longer the price, and the bot will not pretend otherwise. Pre-match quotes are a snapshot; once a game is in play, prices move with every goal, card and corner, and in-play prices come from a single live feed, so the bot labels them indicative.</p>
+
+      <p>If the market has moved by the time you tap, the venue either fills you at a better price or rejects the bet, and you see which. CalledIt never places at a price you were not shown.</p>
+
+    </div>
+
+  </details>
   <details>
     <summary>Can CalledIt place a bet without me?</summary>
     <div class="answer">
