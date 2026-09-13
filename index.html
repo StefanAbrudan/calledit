@@ -254,10 +254,67 @@
   .split>div:first-child,.guard>div:first-child{background:rgba(247,242,233,.66);border-radius:22px;padding:24px}
   .split p{font-size:1rem;line-height:1.62;color:var(--ink-soft)}
   .split p+p{margin-top:14px}
-  .diagram{background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.9);border-radius:22px;padding:22px;box-shadow:0 30px 60px -40px rgba(22,19,14,.35)}
-  .diagram svg{width:100%;height:auto;display:block}
-  .diagram .flow{stroke-dasharray:6 6;animation:flow 1.2s linear infinite}
-  @keyframes flow{to{stroke-dashoffset:-24}}
+
+
+  /* ---- the flow: three nodes, two animated links. Money is a fact on the venue node, not an arrow. */
+  .split{grid-template-columns:1fr;gap:32px}
+  .split>div:first-child{column-count:2;column-gap:40px;padding:0;background:none}
+  .split p{break-inside:avoid}
+  @media(max-width:960px){.split>div:first-child{column-count:1}}
+  .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1.15fr;align-items:stretch;gap:0;padding:6px 0}
+  .flow .node{justify-content:flex-start}
+  .flow .link{align-self:center}
+  .node{position:relative;background:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.95);border-radius:22px;padding:22px 22px 20px;display:flex;flex-direction:column;gap:10px;box-shadow:0 30px 60px -36px rgba(22,19,14,.4);transition:transform .3s,box-shadow .3s}
+  .node:hover{transform:translateY(-4px);box-shadow:0 40px 70px -36px rgba(22,19,14,.5)}
+  .node::before{content:"";position:absolute;left:18px;right:18px;top:0;height:3px;border-radius:0 0 3px 3px}
+  .node.you::before{background:var(--ink)} .node.ci::before{background:linear-gradient(90deg,var(--green),var(--blue))} .node.vn::before{background:var(--blue)}
+  .node-k{font-family:var(--serif);font-weight:500;font-size:1.15rem;letter-spacing:-.01em}
+  .node-s{font-size:.8rem;line-height:1.45;color:var(--ink-soft)}
+  .mini-bubble{align-self:flex-end;background:#effdde;border-radius:14px 14px 4px 14px;padding:7px 10px;font-size:.82rem;max-width:100%}
+  .mini-tap{background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:.8rem;font-weight:600;color:var(--green-600);text-align:center;box-shadow:inset 0 0 0 1px rgba(47,125,50,.15)}
+  .keychip{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:var(--green-100);color:var(--green-700);border-radius:999px;padding:7px 12px 7px 9px;font-size:.82rem;font-weight:600}
+  .keychip svg{width:18px;height:18px}
+  .zero{font-size:.8rem;color:var(--ink-soft)} .zero b{font-family:var(--serif);font-weight:500;font-size:1.25rem;color:var(--ink);margin-right:4px}
+  .bal{display:flex;flex-direction:column;gap:2px} .bal small{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .bal b{font-family:var(--serif);font-weight:500;font-size:1.9rem;letter-spacing:-.02em;line-height:1} .bal b span{font-size:.9rem;font-family:var(--sans);font-weight:600;color:var(--ink-soft);letter-spacing:0}
+  .node.vn ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+  .node.vn li{font-size:.76rem;font-weight:500;color:var(--ink-soft);background:var(--sand);border-radius:999px;padding:4px 9px}
+  .stay{align-self:flex-start;font-size:.76rem;font-weight:600;color:var(--blue-700);background:var(--blue-100);border-radius:999px;padding:4px 10px}
+  .link{position:relative;width:88px;height:60px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+  .link i{display:block;width:100%;height:2px;background-image:linear-gradient(90deg,currentColor 0 55%,transparent 55% 100%);background-size:12px 2px;animation:dash 1s linear infinite;position:relative}
+  .link i::after{content:"";position:absolute;right:-2px;top:-4px;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
+  .link b{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+  .link.tap{color:var(--blue)} .link.place{color:var(--green)}
+  @keyframes dash{to{background-position:12px 0}}
+  @media(max-width:960px){
+    .flow{grid-template-columns:1fr}
+    .link{width:auto;height:54px;flex-direction:row;gap:10px;padding:0 24px}
+    .link i{width:2px;height:100%;background-image:linear-gradient(180deg,currentColor 0 55%,transparent 55% 100%);background-size:2px 12px;animation-name:dashv}
+    .link i::after{right:-4px;top:auto;bottom:-2px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:8px solid currentColor;border-bottom:0}
+    @keyframes dashv{to{background-position:0 12px}}
+  }
+
+
+  /* 3D: each node tilts toward the cursor with a light sweep; the links carry a pulse when a bet moves */
+  .flow{perspective:1200px}
+  .node{transform-style:preserve-3d;--rx:0deg;--ry:0deg;--mx:50%;--my:50%;transform:rotateX(var(--rx)) rotateY(var(--ry))}
+  .node:hover{transform:rotateX(var(--rx)) rotateY(var(--ry)) translateZ(14px)}
+  .node::after{content:"";position:absolute;inset:0;border-radius:22px;pointer-events:none;background:radial-gradient(240px circle at var(--mx) var(--my),rgba(255,255,255,.55),rgba(255,255,255,0) 60%);opacity:0;transition:opacity .3s}
+  .node:hover::after{opacity:1}
+  .node>*{transform:translateZ(18px)}
+  .node.lit{box-shadow:0 0 0 2px var(--green),0 40px 70px -36px rgba(22,19,14,.5)}
+  .link i::before{content:"";position:absolute;top:-4px;left:0;width:10px;height:10px;border-radius:50%;background:currentColor;box-shadow:0 0 0 6px rgba(44,106,181,.18);opacity:0}
+  .link.place i::before{box-shadow:0 0 0 6px rgba(47,125,50,.18)}
+  .link.go i::before{animation:pulse-x .7s ease-in-out forwards}
+  @keyframes pulse-x{0%{opacity:0;left:0}10%{opacity:1}90%{opacity:1}100%{opacity:0;left:calc(100% - 10px)}}
+  .flow-status{font-size:.78rem;font-weight:500;color:var(--ink-soft);min-height:1.2em;transition:color .3s}
+  .flow-status.won{color:var(--green-600)} .flow-status.placed{color:var(--blue-700)}
+  .mini-tap{cursor:pointer;font-family:var(--sans);transition:background .15s,transform .12s}
+  .mini-tap:hover{background:var(--green-100)} .mini-tap:active{transform:scale(.98)} .mini-tap[disabled]{opacity:.6;cursor:default}
+  @media(max-width:960px){
+    .link.go i::before{animation-name:pulse-y;left:-4px;top:0}
+    @keyframes pulse-y{0%{opacity:0;top:0}10%{opacity:1}90%{opacity:1}100%{opacity:0;top:calc(100% - 10px)}}
+  }
 
   .guard{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:36px}
   .guard p{font-size:1rem;line-height:1.62;color:var(--ink-soft)}
@@ -519,32 +576,29 @@
           <p>The key stays yours, and so does the account behind it. It is stored encrypted, used only to read your balance and to place bets you have tapped, and deleted the moment you say <strong>disconnect</strong>. Revoke it at the venue and it stops working there too, whether or not you tell us.</p>
           <p>Which venues one tap reaches depends on where you are, and you see that once you are signed in.</p>
         </div>
-        <div class="diagram" data-fx role="img" aria-label="Diagram: your money sits at your venue account. CalledIt holds an encrypted key and sends a placement only after your tap. No money passes through CalledIt.">
-          <svg viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg" font-family="Inter,-apple-system,sans-serif">
-            <rect x="20" y="30" width="200" height="110" rx="14" fill="#e9f1f7" stroke="#c3d6ef"/>
-            <text x="40" y="62" font-size="13" font-weight="600" fill="#16130e">Your venue account</text>
-            <text x="40" y="86" font-size="12" fill="#4d463c">Your money lives here.</text>
-            <text x="40" y="104" font-size="12" fill="#4d463c">Deposits, balance, settlement.</text>
-            <text x="40" y="122" font-size="12" fill="#4d463c">Their KYC, their terms.</text>
-            <rect x="300" y="30" width="200" height="110" rx="14" fill="#ffffff" stroke="#d8efd7"/>
-            <text x="320" y="62" font-size="13" font-weight="600" fill="#16130e">CalledIt</text>
-            <text x="320" y="86" font-size="12" fill="#4d463c">Your key, encrypted.</text>
-            <text x="320" y="104" font-size="12" fill="#4d463c">Reads your balance.</text>
-            <text x="320" y="122" font-size="12" fill="#4d463c">Places only after your tap.</text>
-            <path class="flow" d="M300 85 H230" stroke="#2f7d32" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arr)"/>
-            <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2f7d32"/></marker></defs>
-            <text x="262" y="72" font-size="11" fill="#2f7d32" text-anchor="middle" font-weight="600">placement</text>
-            <rect x="160" y="200" width="200" height="70" rx="14" fill="#f4efe6" stroke="#e5ddd0"/>
-            <text x="260" y="230" font-size="13" font-weight="600" fill="#16130e" text-anchor="middle">You, in Telegram</text>
-            <text x="260" y="252" font-size="12" fill="#4d463c" text-anchor="middle">Every bet waits for your tap.</text>
-            <path d="M260 200 V150 H400 V140" stroke="#2c6ab5" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
-            <text x="335" y="166" font-size="11" fill="#2c6ab5" text-anchor="middle" font-weight="600">tap</text>
-            <path d="M120 140 V170 H180" stroke="#aa4541" stroke-width="2" fill="none"/>
-            <text x="150" y="190" font-size="11" fill="#aa4541" text-anchor="middle" font-weight="600">no money ever moves here</text>
-            <line x1="172" y1="163" x2="188" y2="177" stroke="#aa4541" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="188" y1="163" x2="172" y2="177" stroke="#aa4541" stroke-width="2.5" stroke-linecap="round"/>
-          </svg>
-        </div>
+        <div class="flow" data-fx role="img" aria-label="How a bet moves: you tap in Telegram, CalledIt sends the placement with your encrypted key, your venue account holds the money and settles. No money ever passes through CalledIt.">
+          <div class="node you">
+            <span class="node-k">You, in Telegram</span>
+            <div class="mini-bubble">bet 5 on over 9.5 corners</div>
+            <button class="mini-tap" type="button" id="flow-place">Place 5 USDT at 1.90</button>
+            <span class="node-s">Every bet waits for your tap.</span>
+          </div>
+          <div class="link tap"><i></i><b>your tap</b></div>
+          <div class="node ci">
+            <span class="node-k">CalledIt</span>
+            <div class="keychip"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="15" r="1.4" fill="currentColor"/></svg><span>your key, encrypted</span></div>
+            <span class="node-s">Reads your balance. Sends the bet. Holds nothing.</span>
+            <span class="zero"><b>0.00</b> ever held by us</span>
+          </div>
+          <div class="link place"><i></i><b>placement</b></div>
+          <div class="node vn">
+            <span class="node-k">Your venue account</span>
+            <div class="bal"><small>Balance</small><b><span id="flow-bal">48.20</span> <span>USDT</span></b></div>
+            <span class="flow-status" id="flow-status" aria-live="polite">Open. Nothing placed yet.</span>
+            <ul><li>Deposits</li><li>Settlement</li><li>Their KYC, their terms</li></ul>
+            <span class="stay">money stays here</span>
+          </div>
+        </div></div>
       </div>
     </section>
 
@@ -923,6 +977,36 @@
           vd.hidden = false;
         });
       });
+    }
+
+
+    /* the flow: tilt toward the cursor, and play a bet through it */
+    var flowEl = document.querySelector(".flow");
+    if (flowEl) {
+      var nodes = flowEl.querySelectorAll(".node");
+      if (!reduce) nodes.forEach(function (n) {
+        n.addEventListener("pointermove", function (e) {
+          var r = n.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+          n.style.setProperty("--ry", ((x - 0.5) * 14).toFixed(2) + "deg"); n.style.setProperty("--rx", ((0.5 - y) * 12).toFixed(2) + "deg");
+          n.style.setProperty("--mx", (x * 100).toFixed(1) + "%"); n.style.setProperty("--my", (y * 100).toFixed(1) + "%");
+        });
+        n.addEventListener("pointerleave", function () { n.style.setProperty("--ry", "0deg"); n.style.setProperty("--rx", "0deg"); });
+      });
+      var fp = document.getElementById("flow-place"), fb = document.getElementById("flow-bal"), fs = document.getElementById("flow-status");
+      var lTap = flowEl.querySelector(".link.tap"), lPlace = flowEl.querySelector(".link.place"), nCi = flowEl.querySelector(".node.ci"), nVe = flowEl.querySelector(".node.vn");
+      var busy = false, playedOnce = false;
+      function countTo(el, from, to, ms, done) { var t0 = performance.now(); (function st(now) { var f = Math.min(1, (now - t0) / ms); el.textContent = (from + (to - from) * f).toFixed(2); if (f < 1) requestAnimationFrame(st); else if (done) done(); })(t0); }
+      function playFlow() {
+        if (busy) return; busy = true; fp.disabled = true; fp.textContent = "Placing\u2026";
+        var wait = function (ms) { return reduce ? 0 : ms; };
+        lTap.classList.add("go");
+        setTimeout(function () { nCi.classList.add("lit"); lPlace.classList.add("go"); fs.textContent = "Sent with your key. Price protected: 1.90 or better."; fs.className = "flow-status placed"; }, wait(650));
+        setTimeout(function () { nVe.classList.add("lit"); countTo(fb, 48.20, 43.20, wait(600)); fs.textContent = "Accepted. 5 USDT at 1.90, ref 52033db7."; fs.className = "flow-status placed"; fp.textContent = "Placed"; }, wait(1350));
+        setTimeout(function () { countTo(fb, 43.20, 52.70, wait(700)); fs.textContent = "Settled: won, +9.50 USDT. Called it."; fs.className = "flow-status won"; }, wait(3200));
+        setTimeout(function () { lTap.classList.remove("go"); lPlace.classList.remove("go"); nCi.classList.remove("lit"); nVe.classList.remove("lit"); fp.disabled = false; fp.textContent = "Place 5 USDT at 1.90"; fb.textContent = "48.20"; fs.textContent = "Open. Nothing placed yet."; fs.className = "flow-status"; busy = false; }, wait(6200));
+      }
+      fp.addEventListener("click", playFlow);
+      if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { if (es[0].isIntersecting && !playedOnce) { playedOnce = true; setTimeout(playFlow, 900); } }, { threshold: 0.6 }).observe(flowEl);
     }
 
     /* step 1: the prompt types itself, real ways to ask */
