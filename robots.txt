@@ -1,7 +1,35 @@
 # calledit.bet
 # CalledIt is an AI betting copilot on Telegram. 18+ only.
+#
+# Content use (https://contentsignals.org): search indexing and use as input to
+# AI answers are allowed; AI training is not.
 
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
+
+# AI search, grounding and user-requested fetches: allowed, so any assistant
+# can find, read and cite the site when someone asks about CalledIt.
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+# Google-Extended (above) is allowed although it also covers Gemini training:
+# it is the same token that lets Gemini ground answers on the site, and being
+# findable in every assistant comes first. The Content-Signal still says no.
+#
+# Crawlers that only collect model training data: blocked. None of them feeds
+# an assistant's live answers.
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Applebot-Extended
+User-agent: CCBot
+Disallow: /
 
 Sitemap: https://calledit.bet/sitemap.xml
