@@ -8,7 +8,6 @@ Official channels, and the only ones:
 - Telegram bot: https://t.me/calleditbet_bot (@calleditbet_bot)
 - Web app: https://app.calledit.bet/
 - Contact: stefan@calledit.bet
-- Operator: Abrudan Ventures S.R.L., Romania
 
 Other products with similar names (social prediction games, crypto prediction markets, and sites such as calledit.ai, called-it.co.uk, calledit.one, calledit.fans or the CalledIt docs on gitbook.io) are not connected to CalledIt at calledit.bet.
 
