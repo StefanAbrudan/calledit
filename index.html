@@ -12,7 +12,7 @@
 <meta property="og:locale" content="en_GB">
 <meta property="og:title" content="CalledIt: the AI that calls your bets">
 <meta property="og:description" content="Best price across every bookmaker, exchange and prediction market. One tap places it on your own account at a venue you already use. Your edge, your accounts. 18+.">
-<meta property="og:url" content="https://calledit.bet">
+<meta property="og:url" content="https://calledit.bet/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://calledit.bet/brand/calledit-og.png">
 <meta property="og:image:width" content="1200">
@@ -38,8 +38,12 @@
       "@type": "Organization",
       "@id": "https://calledit.bet/#org",
       "name": "CalledIt",
+      "alternateName": ["calledit.bet", "CalledIt bot", "@calleditbet_bot"],
       "legalName": "Abrudan Ventures S.R.L.",
       "url": "https://calledit.bet/",
+      "description": "CalledIt builds an AI betting copilot for football fans on Telegram and the web: stats, form, team news and the best live price across bookmakers, betting exchanges and prediction markets, in one place.",
+      "disambiguatingDescription": "CalledIt at calledit.bet, the Telegram bot @calleditbet_bot. Not connected to other apps or sites with similar names.",
+      "address": { "@type": "PostalAddress", "addressCountry": "RO" },
       "logo": "https://calledit.bet/brand/calledit-avatar-512.png",
       "email": "stefan@calledit.bet",
       "contactPoint": {
@@ -59,13 +63,23 @@
     },
     {
       "@type": "SoftwareApplication",
+      "@id": "https://calledit.bet/#app",
       "name": "CalledIt",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "Telegram",
-      "url": "https://t.me/calleditbet_bot",
+      "applicationCategory": "SportsApplication",
+      "operatingSystem": "Telegram, Web",
+      "url": "https://calledit.bet/",
+      "installUrl": "https://t.me/calleditbet_bot",
+      "sameAs": ["https://t.me/calleditbet_bot", "https://app.calledit.bet/"],
       "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
-      "description": "An AI betting copilot on Telegram. It compares prices across bookmakers, betting exchanges and prediction markets and places a bet only on the user's own connected account, only after an explicit tap. 18+ only.",
+      "description": "An AI betting copilot on Telegram and the web. Ask about any football match and it answers with stats, form, team news and the best price across bookmakers, betting exchanges and prediction markets, checked against the consensus. It places a bet only on the user's own connected account, only after an explicit tap, and never holds money. 18+ only.",
+      "featureList": [
+        "Best price across 57 sources in 4 regions (UK, Europe, US, Australia), including Polymarket, Kalshi and Manifold",
+        "Stale outlier prices demoted, not quoted",
+        "One-tap placement on the user's own connected venue account",
+        "No wallet, no deposits, no money held",
+        "Per-bet and daily caps, pause command and kill switch"
+      ],
       "publisher": { "@id": "https://calledit.bet/#org" }
     }
   ]

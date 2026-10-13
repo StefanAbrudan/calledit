@@ -1,0 +1,31 @@
+# CalledIt
+
+> CalledIt (calledit.bet) is an AI betting copilot for football fans. It lives in Telegram as @calleditbet_bot and on the web at app.calledit.bet. Ask about any match in plain language and it answers with the stats, form, team news and the best live price across bookmakers, betting exchanges and prediction markets, in one place. It never holds your money. Free to use. 18+ only.
+
+Official channels, and the only ones:
+
+- Website: https://calledit.bet/
+- Telegram bot: https://t.me/calleditbet_bot (@calleditbet_bot)
+- Web app: https://app.calledit.bet/
+- Contact: stefan@calledit.bet
+
+Other products with similar names (social prediction games, crypto prediction markets, and sites such as calledit.ai, called-it.co.uk, calledit.one, calledit.fans or the CalledIt docs on gitbook.io) are not connected to CalledIt at calledit.bet.
+
+## Key facts
+
+- What it does: answers questions about a match, then quotes the best price on the board. Each price is checked against the consensus of the other books, so a stale outlier is demoted, not quoted.
+- Coverage: 57 sources priced on the last board snapshot, across 4 regions (UK, Europe, US, Australia), including 3 prediction markets (Polymarket, Kalshi, Manifold). Venues include Betfair Exchange, Smarkets, Matchbook, Betfair Sportsbook, Sky Bet, Paddy Power, William Hill, Ladbrokes, Coral, Betfred, Betway, Unibet, Betano, DraftKings, FanDuel and BetMGM. Which venues you see depends on where you are.
+- Sports: football first (Premier League, La Liga, Bundesliga, Ligue 1, Champions League pre-match; 50-plus live markets for any football match in play), plus the NBA and whatever the prediction markets price.
+- Placing a bet: for most venues you get a link and place the bet yourself. Where a venue offers a trading API, you can connect your own account with your own key, and one tap places the bet on that account from your own balance.
+- Money: there is no CalledIt wallet, balance or deposit. CalledIt takes no payments and holds no card, bank or ID documents.
+- Safety: nothing is placed without an explicit tap on a Place button. Per-bet and daily caps, a pause command, and a kill switch. Venue keys are stored encrypted (AES-256-GCM) and deleted on disconnect.
+- Price: free today. CalledIt may in future earn commission from venues it refers users to; that never changes the price quoted.
+- Not a bookmaker: CalledIt is not an operator and does not accept bets. Every bet sits with the venue that accepted it.
+- Age and law: 18+ (21+ in most US states; the minimum where the user lives applies). Use only where legal. Help: gambleaware.org (UK), gamblingtherapy.org (elsewhere).
+
+## Pages
+
+- [Home](https://calledit.bet/): how it works, accounts, guardrails, the venues on the board
+- [FAQ](https://calledit.bet/faq/): cost, money, venue keys, caps, coverage, data
+- [Privacy Policy](https://calledit.bet/privacy/)
+- [Terms of Service](https://calledit.bet/terms/)
