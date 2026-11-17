@@ -411,6 +411,122 @@
   footer a{color:var(--blue)}
   footer .rg{margin-top:10px;max-width:62em}
 
+  /* ---- the board scan: a pinned stage in "how it works", desktop with motion only. JS writes
+     --s (0..1 across the runway) and toggles classes; CSS owns every transform. */
+  .scan{display:none}
+  .scan-on #how>[data-fx]:first-child,.scan-on #how>.steps{display:none}
+  .scan-on #how{padding-top:40px}
+  .scan-on .scan{display:block;position:relative;height:calc(100vh + 1900px)}
+  .scan-stage{position:sticky;top:0;height:100vh;min-height:640px;display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center;padding:92px 0 32px}
+  .scan-copy{position:relative}
+  .scan-copy::before{content:"";position:absolute;inset:-24px -28px;z-index:-1;border-radius:32px;background:radial-gradient(ellipse at 40% 50%,rgba(247,242,233,.94) 0%,rgba(247,242,233,.8) 58%,rgba(247,242,233,0) 100%)}
+  .scan-copy h2{font-size:clamp(2rem,3.3vw,2.85rem);max-width:12.5em}
+  .scan-copy .lead{font-size:1rem;margin-top:12px}
+  .scan-steps{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:6px}
+  .scan-steps li{position:relative;display:grid;grid-template-columns:44px 1fr;gap:6px;padding:12px 14px 12px 18px;border-radius:16px;opacity:.38;transition:opacity .45s cubic-bezier(.16,1,.3,1),background .45s}
+  .scan-steps li::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:3px;background:linear-gradient(180deg,var(--green),var(--blue));transform:scaleY(0);transform-origin:50% 0;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+  .scan-steps li.on{opacity:1;background:rgba(255,255,255,.62)}
+  .scan-steps li.on::before{transform:scaleY(1)}
+  .scan-steps .n{font-family:var(--serif);font-weight:500;font-size:1.7rem;line-height:1.1;font-variation-settings:"opsz" 72;background:linear-gradient(120deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .scan-steps h3{font-family:var(--serif);font-weight:500;font-size:1.3rem;letter-spacing:-.01em;line-height:1.35}
+  .scan-steps .more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.16,1,.3,1)}
+  .scan-steps .more p{overflow:hidden;font-size:.95rem;line-height:1.55;color:var(--ink-soft)}
+  .scan-steps li.on .more{grid-template-rows:1fr}
+  .scan-steps li.on .more p{padding-top:6px}
+
+  .scan-card{background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.95);border-radius:26px;padding:22px;box-shadow:0 50px 90px -50px rgba(22,19,14,.45),0 0 0 1px rgba(22,19,14,.04);display:flex;flex-direction:column;gap:14px}
+  .scan-prompt{display:flex;align-items:center;gap:6px;min-height:46px;background:var(--sand);border-radius:999px;padding:10px 18px;font-size:1rem;color:var(--ink)}
+  .scan-prompt i{width:2px;height:1.1em;background:var(--ink);animation:blink 1s steps(2) infinite}
+  .scan-meta{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:.86rem;color:var(--ink-soft)}
+  .scan-meta b{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:1.05rem;display:inline-block;min-width:1.4em;text-align:right}
+  .scan-sample{font-size:.74rem;font-weight:600;letter-spacing:.04em;color:var(--ink-soft);background:var(--sand);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+  .scan-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  /* unchecked: a faint dashed outline with the name and no price; checked: the sample price lands */
+  .scan-grid .t{position:relative;display:flex;flex-direction:column;gap:3px;padding:9px 10px 10px;border-radius:12px;background:rgba(255,255,255,0);border:1px dashed rgba(22,19,14,.16);opacity:.42;transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1),background .4s,border-color .4s,box-shadow .4s}
+  .scan-grid .t span{font-size:.72rem;font-weight:500;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .scan-grid .t b{font-family:var(--serif);font-weight:500;font-size:1.2rem;letter-spacing:-.01em;color:var(--ink);line-height:1.1;opacity:0;transform:translateY(8px);transition:opacity .45s cubic-bezier(.16,1,.3,1),transform .45s cubic-bezier(.16,1,.3,1)}
+  .scan-grid .more4{grid-column:span 4;flex-direction:row;align-items:baseline;justify-content:space-between}
+  .scan-grid .more4 b{font-size:1rem;color:var(--ink-soft)}
+  .scan-grid .t.in{opacity:1;background:var(--white);border-style:solid;border-color:var(--line)}
+  .scan-grid .t.in b{opacity:1;transform:none}
+  .scan-grid .more4.in{background:var(--sand)}
+  .scan-note{font-size:.8rem;line-height:1.4;color:var(--missed);opacity:0;transform:translateY(6px);transition:opacity .45s cubic-bezier(.16,1,.3,1),transform .45s cubic-bezier(.16,1,.3,1);margin-top:-4px}
+  .scan-note b{text-decoration:line-through}
+  .judged .scan-note{opacity:1;transform:none}
+  .judged .scan-grid .t.in{opacity:.4}
+  .judged .scan-grid .t.top{opacity:1;background:var(--green-100);border-color:var(--green-200)}
+  .judged .scan-grid .t.best{opacity:1;transform:scale(1.05);background:var(--green-100);border-color:var(--green);box-shadow:0 0 0 2px var(--green),0 18px 34px -18px rgba(47,125,50,.6);z-index:1}
+  .judged .scan-grid .t.best b{color:var(--green-700);font-weight:600}
+  .judged .scan-grid .t.stale{opacity:1;background:#f6e2e0;border-color:rgba(170,69,65,.3)}
+  .judged .scan-grid .t.stale b{text-decoration:line-through;color:var(--missed)}
+  .scan-result{display:flex;flex-direction:column;gap:10px;padding:14px 16px;border-radius:16px;background:var(--chat);opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+  .scan-result p{font-size:.98rem;line-height:1.45}
+  .scan-result .won{color:var(--green);font-weight:600}
+  .scan-result .acts{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .scan-result .go{background:var(--green);color:var(--cream);font-weight:600;font-size:.9rem;padding:10px 16px;border-radius:12px;box-shadow:0 12px 24px -14px rgba(47,125,50,.8)}
+  .scan-result .or{font-size:.86rem;color:var(--ink-soft)} .scan-result .or u{color:var(--blue)}
+  .done .scan-result{opacity:1;transform:none}
+  /* shorter or narrower desktops: the same story, packed tighter, so step 3 and the result always fit */
+  @media(min-width:961px) and (max-width:1180px){.scan-stage{grid-template-columns:.8fr 1.2fr;gap:36px}.scan-copy h2{font-size:clamp(1.8rem,3vw,2.4rem)}.scan-steps .more p{font-size:.9rem}.scan-steps h3{font-size:1.18rem}}
+  @media(min-width:961px) and (max-height:820px){.scan-stage{padding:82px 0 18px}.scan-copy .lead{display:none}.scan-steps{margin-top:16px;gap:4px}.scan-steps li{padding:9px 12px 9px 16px}
+    .scan-card{gap:10px;padding:16px}.scan-prompt{min-height:40px;padding:8px 16px;font-size:.95rem}.scan-grid{gap:6px}.scan-grid .t{padding:6px 9px 7px;gap:1px}.scan-grid .t b{font-size:1.05rem}.scan-result{padding:11px 14px;gap:8px}.scan-result p{font-size:.92rem}.scan-result .go{padding:8px 14px}}
+
+  /* ---- the board scan on a phone (html.scan-m): the same story in one column. The section heading
+     scrolls away above it; the pinned stage shows only the step being played, then the card. Tiles
+     carry the price; the three best and the stale one keep a short name, and the answer names them
+     in full. Heights use svh so the final beat fits with the browser bars showing. */
+  .scan-m #how>[data-fx]:first-child{display:block}
+  .scan-m #how{padding-top:84px}
+  .scan-m .scan{height:calc(100vh + 1300px);height:calc(100svh + 1300px);margin-top:8px}
+  .scan-m .scan-stage{height:100vh;height:100svh;min-height:0;grid-template-columns:1fr;gap:10px;align-content:start;align-items:start;padding:68px 0 10px}
+  .scan-m .scan-copy::before{inset:-6px -8px}
+  .scan-m .scan-copy>.eyebrow,.scan-m .scan-copy>h2,.scan-m .scan-copy>.lead{display:none}
+  .scan-m .scan-steps{margin-top:0}
+  /* only the step being played is drawn; the other two stay in the accessibility tree, visually hidden */
+  .scan-m .scan-steps li{padding:8px 12px 8px 14px;grid-template-columns:30px 1fr;gap:4px}
+  .scan-m .scan-steps li:not(.on){position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  .scan-m .scan-steps .n{font-size:1.3rem}
+  .scan-m .scan-steps h3{font-size:1.08rem}
+  .scan-m .scan-steps .more p{font-size:.84rem;line-height:1.45}
+  /* on a short phone the step's text folds away once the answer arrives (the answer restates step 3) */
+  .scan-m.short .scan.done .scan-steps li.on .more{grid-template-rows:0fr}
+  .scan-m.short .scan.done .scan-steps li.on .more p{padding-top:0}
+  .scan-m.short .scan-stage{padding-top:64px;gap:8px}
+  .scan-m.short .scan-card{padding:10px;gap:6px}
+  .scan-m.short .scan-grid{gap:4px}
+  .scan-m.short .scan-grid .t{min-height:32px;padding:5px 3px}
+  .scan-m .scan-card{padding:12px;gap:8px;border-radius:20px}
+  .scan-m .scan-prompt{min-height:36px;padding:7px 12px;font-size:.84rem}
+  .scan-m .scan-meta{font-size:.76rem;gap:6px}
+  .scan-m .scan-meta b{font-size:.92rem}
+  .scan-m .scan-sample{font-size:.66rem;padding:3px 8px}
+  .scan-m .scan-grid{gap:5px}
+  .scan-m .scan-grid .t{padding:6px 3px;border-radius:9px;align-items:center;justify-content:center;text-align:center;min-height:36px;gap:1px}
+  .scan-m .scan-grid .t span{display:none}
+  .scan-m .scan-grid .t[data-short]::before{content:attr(data-short);font-size:.6rem;font-weight:600;line-height:1.2;color:var(--ink-soft);white-space:nowrap;visibility:hidden}
+  .scan-m .judged .scan-grid .t[data-short]::before{visibility:visible}
+  .scan-m .scan-grid .t b{font-size:.98rem}
+  .scan-m .scan-grid .more4{flex-direction:row;gap:6px}
+  .scan-m .scan-grid .more4 span{display:inline;font-size:.66rem}
+  .scan-m .scan-grid .more4 b{font-size:.8rem}
+  .scan-m .scan-note{font-size:.72rem;margin-top:-2px}
+  .scan-m .scan-result{padding:10px 12px;gap:7px;border-radius:14px}
+  .scan-m .scan-result p{font-size:.84rem}
+  .scan-m .scan-result .acts{gap:6px 10px}
+  .scan-m .scan-result .go{font-size:.8rem;padding:7px 12px;border-radius:10px}
+  .scan-m .scan-result .or{font-size:.74rem;line-height:1.35}
+  /* on a phone the note and the answer take no room until their beat, so the card never opens empty */
+  .scan-m .scan-note{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.16,1,.3,1),opacity .45s,transform .45s}
+  .scan-m .judged .scan-note{max-height:4em}
+  .scan-m .scan-result{max-height:0;padding-top:0;padding-bottom:0;overflow:hidden;transition:max-height .6s cubic-bezier(.16,1,.3,1),padding .6s cubic-bezier(.16,1,.3,1),opacity .6s,transform .6s}
+  .scan-m .done .scan-result{max-height:14em;padding-top:10px;padding-bottom:10px}
+  @media(min-width:600px){.scan-m .scan-stage{max-width:560px;margin:0 auto}}
+  /* from 641px the nav shows its links and stands taller, so the stage starts lower */
+  @media(min-width:641px){.scan-m .scan-stage{padding-top:112px}}
+
+  /* the wallet headline reads itself in, word by word, as it crosses the viewport */
+  .reveal-words .rw{opacity:var(--o,1);transition:opacity .25s linear}
+
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     *{transition:none!important;animation:none!important}
@@ -588,6 +704,58 @@
           </div>
         </div>
       </div>
+
+      <!-- The board scan: desktop with motion only (html.scan-on). Scroll drives it: the question
+           types, 25 sources light up (23 books and 2 exchanges, the same count the bot quotes in
+           the hero), the stale outlier is demoted, the best price locks, the tap appears. Every
+           price is the final sample value in the markup; scrolling reveals, never rewrites. -->
+      <div class="scan" id="scan">
+        <div class="scan-stage">
+          <div class="scan-copy">
+            <div class="eyebrow g"><i></i><span>How it works</span></div>
+            <h2>One question. The whole board. A tap, or a link.</h2>
+            <p class="lead">Three things happen every time. The first two are the AI&rsquo;s job. The third one is always yours.</p>
+            <ol class="scan-steps">
+              <li class="on"><span class="n">1</span><div><h3>Ask it like a friend.</h3><div class="more"><p>Type the bet the way you would say it. A team, a market, a stake if you already know it. No forms, no slip-building.</p></div></div></li>
+              <li><span class="n">2</span><div><h3>It checks every book.</h3><div class="more"><p>Bookmakers, betting exchanges, Polymarket, Kalshi. It quotes the best price on the board, checked against the consensus so a stale outlier never fools you.</p></div></div></li>
+              <li><span class="n">3</span><div><h3>You place it. Never the bot.</h3><div class="more"><p>Connected a venue with your own key? One tap places it on your account, from your balance. Everywhere else you get a link straight to the slip.</p></div></div></li>
+            </ol>
+          </div>
+          <div class="scan-card" role="img" aria-label="Illustrative board scan with sample numbers: the question, arsenal v coventry tonight, best price on arsenal; 25 sources checked, 23 bookmakers and 2 exchanges; a stale 1.62 at another book, last updated 41 minutes ago, demoted and not quoted; best price 1.36 at Betfair Exchange, then 1.35 Sky Bet and 1.33 Paddy Power, with a link to place it there.">
+            <div class="scan-prompt"><span class="q" data-q="arsenal v coventry tonight, best price on arsenal?"></span><i aria-hidden="true"></i></div>
+            <div class="scan-meta"><span>Checked <b id="scan-n">0</b> of 25 sources</span><span class="scan-sample">Sample numbers. Not real prices.</span></div>
+            <div class="scan-grid">
+              <div class="t"><span>William Hill</span><b>1.30</b></div>
+              <div class="t top" data-short="Sky Bet"><span>Sky Bet</span><b>1.35</b></div>
+              <div class="t"><span>Coral</span><b>1.29</b></div>
+              <div class="t"><span>Betway</span><b>1.31</b></div>
+              <div class="t"><span>Unibet</span><b>1.28</b></div>
+              <div class="t"><span>Ladbrokes</span><b>1.29</b></div>
+              <div class="t top best" data-short="Betfair Ex."><span>Betfair Exchange</span><b>1.36</b></div>
+              <div class="t"><span>BetVictor</span><b>1.30</b></div>
+              <div class="t stale" data-short="Stale"><span>Another book</span><b>1.62</b></div>
+              <div class="t"><span>888sport</span><b>1.27</b></div>
+              <div class="t"><span>BoyleSports</span><b>1.31</b></div>
+              <div class="t top" data-short="Paddy P."><span>Paddy Power</span><b>1.33</b></div>
+              <div class="t"><span>Betfred</span><b>1.28</b></div>
+              <div class="t"><span>Virgin Bet</span><b>1.29</b></div>
+              <div class="t"><span>Smarkets</span><b>1.32</b></div>
+              <div class="t"><span>LiveScore Bet</span><b>1.27</b></div>
+              <div class="t"><span>Betano</span><b>1.30</b></div>
+              <div class="t"><span>LeoVegas</span><b>1.26</b></div>
+              <div class="t"><span>Casumo</span><b>1.25</b></div>
+              <div class="t"><span>Grosvenor</span><b>1.27</b></div>
+              <div class="t"><span>Betfair Sportsbook</span><b>1.31</b></div>
+              <div class="t more4" data-w="4"><span>+4 more books</span><b>1.25 to 1.30</b></div>
+            </div>
+            <p class="scan-note"><b>1.62</b> at another book was last updated 41 min ago. Demoted, not quoted.</p>
+            <div class="scan-result">
+              <p>Best price <span class="won">1.36 at Betfair Exchange</span>, then 1.35 Sky Bet, 1.33 Paddy Power.</p>
+              <div class="acts"><span class="go">Place it there: betfair.com/&hellip;</span><span class="or">Venue connected with your own key? Then it is one tap, from your balance.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section id="accounts" class="wrap">
@@ -661,9 +829,9 @@
         <h2>Every price it checks, in one place.</h2>
         <p class="lead">Not sponsors, and not partners yet: these are the venues whose prices CalledIt compares so you do not have to open ten apps. Tap one to see what happens when you follow it. Which ones you are shown depends on where you are.</p>
         <div class="board-lead" aria-label="On the last board">
-          <div><b>57</b><small>sources priced on the last board</small></div>
-          <div><b>4</b><small>regions: UK, Europe, US, Australia</small></div>
-          <div><b>3</b><small>prediction markets alongside the books</small></div>
+          <div><b data-up="57">57</b><small>sources priced on the last board</small></div>
+          <div><b data-up="4">4</b><small>regions: UK, Europe, US, Australia</small></div>
+          <div><b data-up="3">3</b><small>prediction markets alongside the books</small></div>
         </div>
       </div>
       <div class="marquee" data-fx><div class="track"><button class="venue" type="button" data-venue="betfair_ex_uk" aria-pressed="false"><span class="mono" style="background:#ffb80c" aria-hidden="true">BE</span>Betfair Exchange<span class="k">Exchange</span></button><button class="venue" type="button" data-venue="betfair_sb_uk" aria-pressed="false"><span class="mono" style="background:#1b1b1b" aria-hidden="true">BS</span>Betfair Sportsbook<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="paddypower" aria-pressed="false"><span class="mono" style="background:#0a4a2b" aria-hidden="true">PP</span>Paddy Power<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="skybet" aria-pressed="false"><span class="mono" style="background:#1e5cff" aria-hidden="true">SB</span>Sky Bet<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="williamhill" aria-pressed="false"><span class="mono" style="background:#0b2e74" aria-hidden="true">WH</span>William Hill<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="ladbrokes_uk" aria-pressed="false"><span class="mono" style="background:#d71920" aria-hidden="true">L</span>Ladbrokes<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="coral" aria-pressed="false"><span class="mono" style="background:#0055a5" aria-hidden="true">C</span>Coral<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="betway" aria-pressed="false"><span class="mono" style="background:#111111" aria-hidden="true">B</span>Betway<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="unibet_uk" aria-pressed="false"><span class="mono" style="background:#147b45" aria-hidden="true">U</span>Unibet<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="betvictor" aria-pressed="false"><span class="mono" style="background:#0a0a2a" aria-hidden="true">B</span>BetVictor<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="sport888" aria-pressed="false"><span class="mono" style="background:#ff6600" aria-hidden="true">8</span>888sport<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="boylesports" aria-pressed="false"><span class="mono" style="background:#006b3f" aria-hidden="true">B</span>BoyleSports<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="betfred_uk" aria-pressed="false"><span class="mono" style="background:#1f3b8f" aria-hidden="true">B</span>Betfred<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="virginbet" aria-pressed="false"><span class="mono" style="background:#e10a0a" aria-hidden="true">VB</span>Virgin Bet<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="livescorebet" aria-pressed="false"><span class="mono" style="background:#ff7a00" aria-hidden="true">LB</span>LiveScore Bet<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="betfair_ex_uk" aria-pressed="false"><span class="mono" style="background:#ffb80c" aria-hidden="true">BE</span>Betfair Exchange<span class="k">Exchange</span></button><button class="venue" type="button" data-venue="betfair_sb_uk" aria-pressed="false"><span class="mono" style="background:#1b1b1b" aria-hidden="true">BS</span>Betfair Sportsbook<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="paddypower" aria-pressed="false"><span class="mono" style="background:#0a4a2b" aria-hidden="true">PP</span>Paddy Power<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="skybet" aria-pressed="false"><span class="mono" style="background:#1e5cff" aria-hidden="true">SB</span>Sky Bet<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="williamhill" aria-pressed="false"><span class="mono" style="background:#0b2e74" aria-hidden="true">WH</span>William Hill<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="ladbrokes_uk" aria-pressed="false"><span class="mono" style="background:#d71920" aria-hidden="true">L</span>Ladbrokes<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="coral" aria-pressed="false"><span class="mono" style="background:#0055a5" aria-hidden="true">C</span>Coral<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="betway" aria-pressed="false"><span class="mono" style="background:#111111" aria-hidden="true">B</span>Betway<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="unibet_uk" aria-pressed="false"><span class="mono" style="background:#147b45" aria-hidden="true">U</span>Unibet<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="betvictor" aria-pressed="false"><span class="mono" style="background:#0a0a2a" aria-hidden="true">B</span>BetVictor<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="sport888" aria-pressed="false"><span class="mono" style="background:#ff6600" aria-hidden="true">8</span>888sport<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="boylesports" aria-pressed="false"><span class="mono" style="background:#006b3f" aria-hidden="true">B</span>BoyleSports<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="betfred_uk" aria-pressed="false"><span class="mono" style="background:#1f3b8f" aria-hidden="true">B</span>Betfred<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="virginbet" aria-pressed="false"><span class="mono" style="background:#e10a0a" aria-hidden="true">VB</span>Virgin Bet<span class="k">Bookmaker</span></button><button class="venue" type="button" data-venue="livescorebet" aria-pressed="false"><span class="mono" style="background:#ff7a00" aria-hidden="true">LB</span>LiveScore Bet<span class="k">Bookmaker</span></button></div></div>
@@ -1068,11 +1236,12 @@
       var cio = new IntersectionObserver(function (es) {
         es.forEach(function (e) {
           if (!e.isIntersecting) return; cio.unobserve(e.target);
-          var end = parseFloat(e.target.getAttribute("data-count")), t0 = performance.now();
+          /* the true price stays in the markup until the moment the count starts */
+          var end = parseFloat(e.target.getAttribute("data-count")), t0 = performance.now(); e.target.textContent = "1.00";
           (function step(now) { var f = Math.min(1, (now - t0) / 900); f = 1 - Math.pow(1 - f, 3); e.target.textContent = (1 + (end - 1) * f).toFixed(2); if (f < 1) requestAnimationFrame(step); })(t0);
         });
       }, { threshold: 0.6 });
-      counters.forEach(function (c) { c.textContent = "1.00"; cio.observe(c); });
+      counters.forEach(function (c) { cio.observe(c); });
     }
 
     /* step 2, live: quotes drift the way a real board does, the ranking follows, and every move
@@ -1193,6 +1362,103 @@
     }
     cap.addEventListener("input", judge); pause.addEventListener("change", judge); judge();
     placeBtn.addEventListener("click", function () { placeBtn.disabled = true; placeBtn.textContent = "Placed. Ref 52033db7"; why.textContent = "Illustrative. In the real bot this tap happens in Telegram, on your own account."; why.className = "why ok"; });
+  })();
+  </script>
+  <script>
+  /* The board scan, the wallet headline and the stat count-ups. The scan runs only on a wide
+     screen with motion allowed; anywhere else the three cards above it are the page, untouched.
+     Scroll position is smoothed (lerp .14) and mapped to beats; no beat ever changes a number,
+     it only reveals the sample value already in the markup. */
+  (function () {
+    var root = document.documentElement;
+    var wide = window.matchMedia("(min-width: 961px) and (min-height: 680px)"), calm = window.matchMedia("(prefers-reduced-motion: reduce)");
+    function clamp(x) { return Math.min(1, Math.max(0, x)); }
+
+    var scan = document.getElementById("scan");
+    if (scan) {
+      var card = scan.querySelector(".scan-card"), steps = scan.querySelectorAll(".scan-steps li"),
+          q = scan.querySelector(".scan-prompt .q"), Q = q.getAttribute("data-q"), nEl = document.getElementById("scan-n"),
+          tiles = [].slice.call(scan.querySelectorAll(".scan-grid .t"));
+      var on = false, cur = 0, target = 0, raf = null, last = 0;
+      var stage = scan.querySelector(".scan-stage");
+      /* the run is measured against the stage's own height, so a toolbar collapsing never jumps the beat */
+      function measure() { var run = scan.offsetHeight - stage.offsetHeight; target = clamp(-scan.getBoundingClientRect().top / Math.max(1, run)); }
+      function render(s) {
+        var typed = Q.slice(0, Math.round(Q.length * clamp(s / 0.2)));
+        if (q.textContent !== typed) q.textContent = typed;
+        var shown = Math.floor(clamp((s - 0.22) / 0.36) * tiles.length), count = 0;
+        tiles.forEach(function (t, i) { var lit = i < shown; t.classList.toggle("in", lit); if (lit) count += Number(t.getAttribute("data-w") || 1); });
+        nEl.textContent = String(count);
+        card.classList.toggle("judged", s >= 0.62);
+        card.classList.toggle("done", s >= 0.76); scan.classList.toggle("done", s >= 0.76);
+        var step = s < 0.21 ? 0 : s < 0.74 ? 1 : 2;
+        steps.forEach(function (li, i) { li.classList.toggle("on", i === step); });
+      }
+      function loop() {
+        raf = null; measure();
+        /* .14 per 60fps frame, scaled by real elapsed time, so a phone busy at 20fps catches up as fast */
+        var now = performance.now(), dt = Math.min(0.1, (now - (last || now)) / 1000) || 1 / 60; last = now;
+        cur += (target - cur) * (1 - Math.pow(0.86, dt * 60)); if (Math.abs(target - cur) < 0.0005) cur = target;
+        render(cur);
+        if (cur !== target) raf = requestAnimationFrame(loop); else last = 0;
+      }
+      function kick() { if (on && !raf) raf = requestAnimationFrame(loop); }
+      /* desktop: wide and at least 680px tall. Phone and tablet: portrait, at least 640px of page
+         visible with the browser bars up. On a phone the mode is decided at load and again only when
+         the width changes (rotation), never when the bars collapse mid-scroll, because switching it
+         changes the page height by the whole runway. */
+      var lastW = -1;
+      function mode() {
+        var w = window.innerWidth, h = window.innerHeight, was = on, phone = w < 961;
+        if (phone && w === lastW) return;
+        lastW = w;
+        on = !calm.matches && (phone ? (h > w && h >= 640) : (wide.matches));
+        root.classList.toggle("scan-on", on);
+        root.classList.toggle("scan-m", on && phone);
+        root.classList.toggle("short", on && phone && h < 700);
+        if (on) { measure(); cur = target; render(cur); }
+        /* the page got taller or shorter: let the particle keys and the nav re-measure */
+        if (on !== was) window.dispatchEvent(new Event("resize"));
+      }
+      window.addEventListener("scroll", kick, { passive: true });
+      window.addEventListener("resize", function () { mode(); kick(); });
+      [wide, calm].forEach(function (m) { if (m.addEventListener) m.addEventListener("change", function () { lastW = -1; mode(); }); else m.addListener(function () { lastW = -1; mode(); }); });
+      mode();
+    }
+
+    /* the wallet headline: each word brightens as the line crosses from 90% to 45% of the viewport */
+    var wh = document.querySelector("#accounts h2");
+    if (wh && !calm.matches) {
+      var words = wh.textContent.trim().split(/\s+/), spans = [];
+      wh.textContent = "";
+      words.forEach(function (w, i) {
+        var s = document.createElement("span"); s.className = "rw"; s.textContent = w; spans.push(s);
+        wh.appendChild(s); if (i < words.length - 1) wh.appendChild(document.createTextNode(" "));
+      });
+      wh.classList.add("reveal-words");
+      var wraf = null;
+      function words2() {
+        wraf = null;
+        var vh = window.innerHeight, p = clamp((vh * 0.9 - wh.getBoundingClientRect().top) / (vh * 0.45)) * spans.length;
+        spans.forEach(function (s, i) { s.style.setProperty("--o", String(0.16 + 0.84 * clamp(p - i))); });
+      }
+      window.addEventListener("scroll", function () { if (!wraf) wraf = requestAnimationFrame(words2); }, { passive: true });
+      words2();
+    }
+
+    /* the board stats count up once. The true number stays in the markup until the stat starts
+       entering the viewport (threshold 0), so crawlers, readers and copy-paste always get it */
+    var ups = document.querySelectorAll("[data-up]");
+    if (ups.length && !calm.matches && "IntersectionObserver" in window) {
+      var uio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return; uio.unobserve(e.target);
+          var el = e.target, end = Number(el.getAttribute("data-up")), t0 = performance.now();
+          (function step(now) { var f = Math.min(1, (now - t0) / 1100); f = 1 - Math.pow(1 - f, 3); el.textContent = String(Math.round(end * f)); if (f < 1) requestAnimationFrame(step); })(t0);
+        });
+      }, { threshold: 0 });
+      ups.forEach(function (u) { uio.observe(u); });
+    }
   })();
   </script>
 </body>
